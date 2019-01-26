@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, Button, Spinner } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 class Photos extends Component {
@@ -43,30 +43,35 @@ class Photos extends Component {
 		const { isLoaded } = this.state;
 
 		if (!isLoaded) {
-			return <div className="loading-screen">Loading...</div>;
+			return <Spinner style={{ width: '3rem', height: '3rem' }} />;
 		} else {
 			return (
 				<div className="container">
 					<div className="col-md-12">
+						<h1>Photo Browser App</h1>
 						<div className="row">
 							{this.state.photos.map((photo) => (
-								<div className="col-md-4" key={photo.id}>
-									<Link
-										to={{
-											pathname: `/photo/${photo.id}`,
-											state: { photo: photo.id }
-										}}
-									>
-										<img src={photo.thumbnailUrl} alt={photo.title} />
-										<h3>{photo.title}</h3>
-
-										<Button color="danger">Watch Photo Details!</Button>
-									</Link>
+								<div className="col-md-4 photos" key={photo.id}>
+									<Card>
+										<Link
+											to={{
+												pathname: `/photo/${photo.id}`,
+												state: { photo: photo.id }
+											}}
+										>
+											<CardImg top width="100%" src={photo.thumbnailUrl} alt={photo.title} />
+											<CardBody>
+												<CardTitle>{photo.title}</CardTitle>
+											</CardBody>
+										</Link>
+									</Card>
 								</div>
 							))}
-							<h3 onClick={this.loadMore}>
-								<i>Show More Photos</i>
-							</h3>
+							<div className="load-more">
+								<button onClick={this.loadMore} className="btn btn-primary">
+									Show More Photos
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>

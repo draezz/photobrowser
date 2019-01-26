@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import { CardImg, Spinner } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 class PhotoDetails extends React.Component {
 	state = {
+		isLoaded: false,
 		activePhoto: []
 	};
 
@@ -14,20 +15,46 @@ class PhotoDetails extends React.Component {
 
 		const response = await req.json();
 		this.setState({
+			isLoaded: true,
 			activePhoto: response
 		});
 	};
 
 	render() {
 		const photo = this.state.activePhoto;
-		return (
-			<div className="photo-details">
-				<img src={photo.url} /> <h3> {photo.title} </h3>
-				<Link to={'/'} title="Return to photos page">
-					Return back to photos
-				</Link>
-			</div>
-		);
+
+		const { isLoaded } = this.state;
+
+		if (!isLoaded) {
+			return (
+				<div className="App">
+					<Spinner style={{ width: '3rem', height: '3rem' }} />
+				</div>
+			);
+		} else {
+			return (
+				<div className="photo-details">
+					<div className="container">
+						<div className="col-md-12">
+							<div className="row">
+								<div className="col-md-6">
+									<CardImg src={photo.url} alt={photo.title} />
+								</div>
+
+								<div className="col-md-6">
+									<h1>{photo.title}</h1>
+									<p>ID: {photo.id}</p>
+
+									<Link to={'/'} title="Return to photos">
+										<button className="btn btn-primary">Return to photos</button>
+									</Link>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			);
+		}
 	}
 }
 
