@@ -1,0 +1,26 @@
+.spinner {
+	position: absolute;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.photo-details {
+	padding: 40px;
+}
+
+.loading-screen {
+	font-size: 82px;
+}
+
+.col-md-4 {
+	margin-bottom: 40px;
+}
+
+.load-more {
+	text-align: center;
+	margin: 0 auto;
+}
+
+h1 {
+	margin: 40px 0;
+}
