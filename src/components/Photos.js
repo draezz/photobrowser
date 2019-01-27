@@ -17,7 +17,7 @@ class Photos extends Component {
 	// Fetch Photos from API and store them to state
 	loadPhotos = () => {
 		const { per, page, photos } = this.state;
-		const url = `http://jsonplaceholder.typicode.com/photos?_page=${this.state.page}&_limit=${this.state.per}`;
+		const url = `https://jsonplaceholder.typicode.com/photos?_page=${this.state.page}&_limit=${this.state.per}`;
 		fetch(url)
 			.then((res) => res.json()) //response type
 			.then((json) => {

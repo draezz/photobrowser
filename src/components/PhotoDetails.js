@@ -11,7 +11,7 @@ class PhotoDetails extends React.Component {
 	// Fetch Photos from API and store them to state
 	componentDidMount = async () => {
 		const id = this.props.match.params.id;
-		const req = await fetch(`http://jsonplaceholder.typicode.com/photos/${id}`);
+		const req = await fetch(`https://jsonplaceholder.typicode.com/photos/${id}`);
 
 		const response = await req.json();
 		this.setState({
