@@ -8,16 +8,22 @@ class PhotoDetails extends React.Component {
 		activePhoto: []
 	};
 
-	// Fetch Photos from API and store them to state
-	componentDidMount = async () => {
-		const id = this.props.match.params.id;
-		const req = await fetch(`https://jsonplaceholder.typicode.com/photos/${id}`);
+	// Fetch Photo from API with the ID and store it to the state
+	componentDidMount() {
+		this.loadPhoto();
+	}
 
-		const response = await req.json();
-		this.setState({
-			isLoaded: true,
-			activePhoto: response
-		});
+	loadPhoto = () => {
+		const id = this.props.match.params.id;
+		const url = `https://jsonplaceholder.typicode.com/photos/${id}`;
+		fetch(url)
+			.then((res) => res.json()) //response type
+			.then((json) => {
+				this.setState({
+					isLoaded: true,
+					activePhoto: json
+				});
+			});
 	};
 
 	render() {
