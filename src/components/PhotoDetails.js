@@ -28,7 +28,7 @@ class PhotoDetails extends React.Component {
 		if (!isLoaded) {
 			return (
 				<div className="App">
-					<Spinner style={{ width: '3rem', height: '3rem' }} />
+					<Spinner style={{ width: '2rem', height: '2rem' }} />
 				</div>
 			);
 		} else {

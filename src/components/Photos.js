@@ -43,7 +43,7 @@ class Photos extends Component {
 		const { isLoaded } = this.state;
 
 		if (!isLoaded) {
-			return <Spinner style={{ width: '3rem', height: '3rem' }} />;
+			return <Spinner style={{ width: '2rem', height: '2rem' }} />;
 		} else {
 			return (
 				<div className="container">
